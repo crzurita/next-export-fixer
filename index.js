@@ -5,7 +5,7 @@ var directory = path.join(process.cwd(), 'out');
 console.log('Checking html files...')
 processFiles(directory);
 console.log('The next project exported was successfully fixed');
-process.kill(process.pid);
+process.exit();
 
 function processFiles(pathName) {
   var names = fs.readdirSync(pathName);
