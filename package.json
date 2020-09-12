@@ -1,6 +1,6 @@
 {
   "name": "next-export-fixer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fix issues with exported nextjs application",
   "bin": {
     "next-export-fixer": "./bin/index.js"
