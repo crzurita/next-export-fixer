@@ -1,21 +1,22 @@
-const path = require('path');
-const fs = require('fs');
-const directory = path.join(process.cwd(), 'out');
+var path = require('path');
+var fs = require('fs');
+var directory = path.join(process.cwd(), 'out');
 
+console.log('Checking html files...')
 processFiles(directory);
-console.log('The next project output was successfully fixed');
+console.log('The next project exported was successfully fixed');
 
 function processFiles(pathName) {
-  const names = fs.readdirSync(pathName);
-  names.forEach(file => {
-    if (file.match(/\./)) {
-      const originalContent = fs.readFileSync(path.join(pathName, file), 'utf-8');
-      const replacedContent = originalContent.replace(/\/_next/g, './_next');
+  var names = fs.readdirSync(pathName);
+  names.forEach(function(file) {
+    if (file.match(/\.html/)) {
+      var originalContent = fs.readFileSync(path.join(pathName, file), 'utf-8');
+      var replacedContent = originalContent.replace(/\/_next/g, './_next');
       if(originalContent !== replacedContent) {
         fs.writeFileSync(path.join(pathName, file), replacedContent);
-        console.log(path.join(pathName, file) + ' done! :)')
+        console.log(path.join(pathName, file) + ' fixed! :)')
       }
-    } else {
+    } else if (!file.match(/\./)) {
       processFiles(path.join(pathName, file));
     }
   })
